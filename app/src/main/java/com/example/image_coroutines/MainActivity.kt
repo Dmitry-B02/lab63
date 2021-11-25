@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val view = MainViewModel()
+        val viewModel = MainViewModel()
         if (binding.img.drawable == null) {
-            viewModel.loadImageFromNet()
+            viewModel.loadImage()
         }
 
         viewModel.bitmapData.observe(this) { value ->
