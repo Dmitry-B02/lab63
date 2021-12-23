@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
 
+
 class MainViewModel: ViewModel() {
     val bitmapData = MutableLiveData<Bitmap>()
 
