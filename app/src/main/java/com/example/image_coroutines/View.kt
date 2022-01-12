@@ -10,17 +10,19 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
 
+class View: ViewModel() {
+    val data = MutableLiveData<Bitmap>()
 
-class MainViewModel: ViewModel() {
-    val bitmapData = MutableLiveData<Bitmap>()
 
     fun loadImage() {
         viewModelScope.launch(Dispatchers.IO) {
             val url = URL("https://i.ibb.co/LCGjry8/Screenshot-20211121-231052-Gallery.jpg")
             val stream = url.openConnection().getInputStream()
-            val bitmap = BitmapFactory.decodeStream(stream)
-            withContext(Dispatchers.Main) {
-                bitmapData.value = bitmap
+            stream.use {
+                val mIcon_val = BitmapFactory.decodeStream(it)
+                withContext(Dispatchers.Main) {
+                    data.value = mIcon_val
+                }
             }
         }
     }
